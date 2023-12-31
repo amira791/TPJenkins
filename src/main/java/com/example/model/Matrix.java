@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class Matrix {
-
+        //var
 	private int nrows;
 	private int ncols;
 	private double[][] data;
