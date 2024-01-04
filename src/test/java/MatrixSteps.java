@@ -14,6 +14,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
 public class MatrixSteps {
+    //dec
     double det ;
     Matrix transposeMatrix ;
     Matrix inverseMatrix ;
