@@ -1,75 +1,66 @@
 pipeline {
   agent any
   stages {
-  stage ('Test')
-  {
-      steps {
-           bat './gradlew test'
-           archiveArtifacts 'build/test-results/test/*.xml'
-           cucumber buildStatus: 'UNSTABLE',
-                   reportTitle: 'Report Cucumber',
-                   fileIncludePattern: 'target/report.json'
-            }
+
+  stage("test"){
+      steps{
+         bat './gradlew test'
+         archiveArtifacts 'build/reports/'
+         cucumber buildStatus: 'UNSTABLE',
+         reportTitle: 'My report',
+         fileIncludePattern: 'target/report.json'
+      }
   }
 
-  stage('CodeAnalysis')
-  {
-      steps {
-      withSonarQubeEnv("sonar") {
-                     bat './gradlew sonarqube'
-            }
-
+  stage("code analysis"){
+      steps{
+        withSonarQubeEnv('sonar') {
+             bat './gradlew sonar'
         }
-   }
-
-  stage('Code Quality')
-  {
-      steps {
-                     timeout(time: 1, unit: 'HOURS') {
-                         waitForQualityGate abortPipeline: true
-                     }
-             }
-
-
-  }
-  stage('Build')
-  {
-        steps {
-                             bat 'gradlew build'
-                             bat 'gradlew javadoc'
-                             archiveArtifacts 'build/libs/*.jar'
-                             archiveArtifacts 'build/docs/'
-                         }
-  }
-  stage('Deploy')
-    {
-         steps{
-          bat './gradlew publish'
-              }
+       }
     }
-  stage('Notification')
-        {
-             steps {
-                                 echo "Notification..."
-                                 notifyEvents message: 'Build is created with success', token: 'scoocb5lcsogtwlpl8gbtkyitgaqbmdi'
+    stage("code quality"){
+      steps{
+         waitForQualityGate abortPipeline: true
+      }
+    }
 
-                   }
+     stage("build"){
+        steps{
+          bat './gradlew build'
+          bat './gradlew javadoc'
+          archiveArtifacts 'build/libs/*.jar'
+          archiveArtifacts 'build/docs/'
+        }
+      }
 
-                   post {
-                         success {
-                             mail to: "ka_bellali@esi.dz",
-                             subject: "Build Succeeded",
-                             body: "Build is deployed with success!"
-
-                         }
-                         failure {
-                             mail to: "ka_bellali@esi.dz",
-                             subject: "Build failed",
-                             body: " Build is deployed with failure!"
-                          }
-
-                   }
+        stage("deploy"){
+          steps{
+           bat './gradlew publish'
+          }
         }
 
-    }
+        stage("notification"){
+            steps{
+              echo "Notification..."
+              notifyEvents message: 'Deployment successfully', token: 'sp7raq6tuawngve4pjxoaqpoqpw570wo'
+            }
+        }
+}
+
+    post {
+            success {
+
+                emailext subject: 'Deployement Succeeded',
+                          body: 'This is an email that informs that the new Build is deployed with success!',
+                          to: 'soumichan55@gmail.com'
+
+            }
+            failure {
+                        emailext subject: 'Deployement Failed',
+                        body: 'This is an email that informs that the new Build is deployed with failure!',
+                        to: 'soumichan55@gmail.com'
+
+            }
+        }
 }
