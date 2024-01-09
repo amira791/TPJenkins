@@ -55,13 +55,15 @@ pipeline {
 
                 emailext subject: 'Deployement Succeeded',
                           body: 'This is an email that informs that the new Build is deployed with success!',
-                          to: 'soumichan55@gmail.com'
+                          from: 'ka_bellali@esi.dz',
+                          to: 'ka_bellali@esi.dz'
 
             }
             failure {
                         emailext subject: 'Deployement Failed',
                         body: 'This is an email that informs that the new Build is deployed with failure!',
-                        to: 'soumichan55@gmail.com'
+                        from: 'ka_bellali@esi.dz',
+                        to: 'ka_bellali@esi.dz'
 
             }
         }
