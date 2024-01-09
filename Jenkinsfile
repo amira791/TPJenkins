@@ -6,14 +6,15 @@ pipeline {
            bat 'gradlew test'
            junit 'build/test-results/test/*.xml'
            cucumber buildStatus: 'UNSTABLE',
-                   reportTitle: 'My report',
+                   reportTitle: 'Report Cucumber',
                    fileIncludePattern: 'target/report.json'
             }
+  }
   stage('CodeAnalysis')
   {
       steps {
       withSonarQubeEnv("sonar") {
-                     bat 'gradlew sonarqube' }
+                     bat 'gradlew sonarqube'
             }
   }
   stage('Code Quality')
@@ -22,7 +23,7 @@ pipeline {
                      timeout(time: 1, unit: 'HOURS') {
                          waitForQualityGate abortPipeline: true
                      }
-                 }
+
   }
   stage('Build')
   {
@@ -44,9 +45,7 @@ pipeline {
              steps {
                                  echo "Notification..."
                                  notifyEvents message: 'Build is created with success', token: 'scoocb5lcsogtwlpl8gbtkyitgaqbmdi'
-                             }
-                         }
-                       }
+
 
 
                        post {
