@@ -43,7 +43,7 @@ pipeline {
         stage("notification"){
             steps{
               echo "Notification..."
-              notifyEvents message: 'Deployment successfully', token: 'sp7raq6tuawngve4pjxoaqpoqpw570wo'
+              notifyEvents message: 'Deployment successfully', token: 'scoocb5lcsogtwlpl8gbtkyitgaqbmdi'
             }
         }
 }
