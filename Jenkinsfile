@@ -57,13 +57,14 @@ pipeline {
                              mail to: "ka_bellali@esi.dz",
                              subject: "Build Succeeded",
                              body: "Build is deployed with success!"
-                              
+
                          }
                          failure {
                              mail to: "ka_bellali@esi.dz",
                              subject: "Build failed",
                              body: " Build is deployed with failure!"
                           }
+                          
                    }
         }
 
