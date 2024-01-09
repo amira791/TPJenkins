@@ -11,6 +11,7 @@ pipeline {
                    fileIncludePattern: 'target/report.json'
             }
   }
+  
   stage('CodeAnalysis')
   {
       steps {
