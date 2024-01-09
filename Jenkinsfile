@@ -48,19 +48,19 @@ pipeline {
         }
 }
 
-    post {
-            success {
-
-                emailext subject: 'Deployement Succeeded',
-                          body: 'This is an email that informs that the new Build is deployed with success!',
-                          to: 'soumichan55@gmail.com'
-
-            }
-            failure {
-                        emailext subject: 'Deployement Failed',
-                        body: 'This is an email that informs that the new Build is deployed with failure!',
-                        to: 'soumichan55@gmail.com'
-
-            }
-        }
+//     post {
+//             success {
+//
+//                 emailext subject: 'Deployement Succeeded',
+//                           body: 'This is an email that informs that the new Build is deployed with success!',
+//                           to: 'soumichan55@gmail.com'
+//
+//             }
+//             failure {
+//                         emailext subject: 'Deployement Failed',
+//                         body: 'This is an email that informs that the new Build is deployed with failure!',
+//                         to: 'soumichan55@gmail.com'
+//
+//             }
+//         }
 }
