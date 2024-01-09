@@ -21,6 +21,7 @@ pipeline {
 
         }
    }
+
   stage('Code Quality')
   {
       steps {
@@ -28,7 +29,7 @@ pipeline {
                          waitForQualityGate abortPipeline: true
                      }
              }
-             
+
 
   }
   stage('Build')
