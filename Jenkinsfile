@@ -52,11 +52,11 @@ pipeline {
 
         post {
                 success {
-                  mail(subject: 'Deployement Succeeded',body: 'This is an email that informs that the new Build is deployed with success!',from: 'ks_mekki@esi.dz',to: 'ks_mekki@esi.dz')
+                  mail(subject: 'Deployement Succeeded',body: 'This is an email that informs that the new Build is deployed with success!',from: 'ka_bellali@esi.dz',to: 'ka_bellali@esi.dz')
 
                 }
                 failure {
-                  mail(subject: 'Deployement Failed',body: 'This is an email that informs that the new Build is deployed with failure!',from: 'ks_mekki@esi.dz',to: 'ks_mekki@esi.dz')
+                  mail(subject: 'Deployement Failed',body: 'This is an email that informs that the new Build is deployed with failure!',from: 'ka_bellali@esi.dz',to: 'ka_bellali@esi.dz')
                   notifyEvents message: 'Deployment failed', token: 'sp7raq6tuawngve4pjxoaqpoqpw570wo'
 
                 }
