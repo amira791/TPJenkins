@@ -11,7 +11,7 @@ pipeline {
                    fileIncludePattern: 'target/report.json'
             }
   }
-  
+
   stage('CodeAnalysis')
   {
       steps {
@@ -57,9 +57,7 @@ pipeline {
                              mail to: "ka_bellali@esi.dz",
                              subject: "Build Succeeded",
                              body: "Build is deployed with success!"
-                              slackSend(channel: "#general", message: "Build Succeeded")
-
-                             signalSend message: "Build Succeeded"
+                              
                          }
                          failure {
                              mail to: "ka_bellali@esi.dz",
