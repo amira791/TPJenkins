@@ -100,4 +100,11 @@ public class Matrix {
 
 	}
 
+	@Override
+	public int hashCode() {
+		int result = 17; // A prime number to start with
+		result = 31 * result + Arrays.deepHashCode(data); // Assuming 'data' is your matrix content
+		return result;
+	}
+
 }
