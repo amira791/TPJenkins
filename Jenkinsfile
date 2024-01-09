@@ -18,6 +18,8 @@ pipeline {
       withSonarQubeEnv("sonar") {
                      bat './gradlew sonarqube'
             }
+
+
         }
    }
   stage('Code Quality')
@@ -64,7 +66,7 @@ pipeline {
                              subject: "Build failed",
                              body: " Build is deployed with failure!"
                           }
-                          
+
                    }
         }
 
