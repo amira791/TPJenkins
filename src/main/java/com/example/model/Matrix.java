@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class Matrix {
-        //var
+
 	private int nrows;
 	private int ncols;
 	private double[][] data;
@@ -77,8 +77,6 @@ public class Matrix {
 	}
 
 
-
-
 	@Override
 	public boolean equals(Object obj) {
 		if(this == obj) {
@@ -98,10 +96,9 @@ public class Matrix {
 		}
 
 
-	return  true;
+		return  true;
 
 	}
-
 
 	@Override
 	public int hashCode() {
