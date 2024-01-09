@@ -75,13 +75,8 @@ public class Matrix {
 		}
 		return mat;
 	}
-	
-	@Override
-	public int hashCode() {
-		int result = 17; // A prime number to start with
-		result = 31 * result + Arrays.deepHashCode(data); // Assuming 'data' is your matrix content
-		return result;
-	}
+
+
 
 
 	@Override
@@ -105,6 +100,22 @@ public class Matrix {
 
 	return  true;
 
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+
+		// Assuming that getValueAt(i, j) returns a primitive type (like int)
+		for (int i = 0; i < nrows; i++) {
+			for (int j = 0; j < ncols; j++) {
+				result = (int) (prime * result + getValueAt(i, j));
+			}
+		}
+
+		return result;
 	}
 
 
